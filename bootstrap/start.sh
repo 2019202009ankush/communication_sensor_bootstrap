@@ -1,2 +1,2 @@
-sudo pip install requirement.txt
+sudo pip3 install requirement.txt
 sudo docker-compose up

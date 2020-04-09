@@ -11,7 +11,7 @@ def ApplicationManager_to_ServiceLifeCycle_interface(func_name):
 	from kafka import KafkaConsumer
 	topic='ApplicationManager_to_ServiceLifeCycle'
 	
-	consumer = KafkaConsumer(topic,bootstrap_servers='localhost:9092',value_deserializer=lambda m: json.loads(m.decode('utf-8')))
+	consumer = KafkaConsumer(topic,bootstrap_servers='localhost:9092',auto_offset_reset='earliest',value_deserializer=lambda m: json.loads(m.decode('utf-8')))
 
 	# consumer.subscribe([topic]) 
 
@@ -93,9 +93,9 @@ def RuntimeServer_to_ActionServer_interface(func_name):
 			th = threading.Thread(target=func_name)
 			th.start()
 
-def Sersor_Stream(type):
+def Sersor_Stream(typ):
 	from kafka import KafkaConsumer
-	topic='RuntimeServer_to_ActionServer'
+	topic=typ
 	consumer = KafkaConsumer(topic,bootstrap_servers='localhost:9092',auto_offset_reset='earliest',value_deserializer=lambda m: json.loads(m.decode('utf-8')))
 
 	# consumer.subscribe([topic]) 
